@@ -1,4 +1,4 @@
-const Container = require('./class');
+const Container = require('./class/Container');
 const data = require('./database');
 
 const products = new Container('./products.txt');
