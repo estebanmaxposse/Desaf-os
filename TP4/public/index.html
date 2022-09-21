@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <title>API RESTful</title>
+  </head>
+  <body>
+    <h1>Enter a product!</h1>
+    <div class="d-flex justify-content-center">
+      <form action="/api/products" method="POST" class="w-50">
+        <div class="mb-3">
+          <label for="product-title" class="form-label">Product Title</label>
+          <input
+            name="title"
+            type="text"
+            class="form-control"
+            id="product-title"
+            aria-describedby="product-title"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="product-price" class="form-label">Product Price</label>
+          <input
+            name="price"
+            type="number"
+            class="form-control"
+            id="product-price"
+            aria-describedby="product-price"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="product-thumbnail" class="form-label"
+            >Product Thumbnail</label
+          >
+          <input
+            name="thumbnail"
+            type="text"
+            class="form-control"
+            id="product-thumbnail"
+            aria-describedby="product-thumbnail"
+          />
+        </div>
+        <button class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
