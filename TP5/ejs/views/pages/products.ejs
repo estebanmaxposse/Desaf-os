@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+
+    <body>
+        <%- include('../partials/header') %>
+
+            <div class="m-5">
+                <% if (productExists) { %>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Image</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% products.forEach(product=> { %>
+                                <tr>
+                                    <th scope="row">
+                                        <%= product.id %>
+                                    </th>
+                                    <td>
+                                        <a href=<%= product.url %>>
+                                            <%= product.title %>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <%= product.price %>
+                                    </td>
+                                    <td><img src=<%=product.thumbnail %> class="w-25 h-auto" /></td>
+                                </tr>
+                                <% }) %>
+                        </tbody>
+                    </table>
+                    <% } else { %>
+                        <div class="alert alert-danger" role="alert">
+                            <p>You haven't added any products yet!</p>
+                        </div>
+                        <% } %>
+
+            </div>
+
+            <% include('../partials/bootstrap') %>
+    </body>
+
+</html>

@@ -1,0 +1,1 @@
+En mi opinión, estas plantillas no fueron del todo muy útiles. La más útil es pug para mí, porque te permite incrustar código en medio del HTML sin usar una sintaxis que haga mucho boilerplate al código. Queda más limpio, entendible e intuitivo que los otros dos motores de plantilla.

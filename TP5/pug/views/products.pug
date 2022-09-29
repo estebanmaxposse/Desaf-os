@@ -1,0 +1,32 @@
+include includes/head.pug
+    
+body
+    include includes/header.pug
+
+    section(class="m-5")
+        if products.length !== 0
+            table(class="table")
+                thead
+                    tr
+                        th(scope="col") Id
+                        th(scope="col") Title
+                        th(scope="col") Price
+                        th(scope="col") Image
+            
+                tbody
+                    each product in products
+                        tr
+                            th(scope="row")= product.id
+                            
+                            td
+                                a(href=product.url)= product.title
+                            
+                            td= product.price
+                            
+                            td
+                                img(src=product.thumbnail class="w-25 h-auto")
+        else
+            div(class="alert alert-danger" role="alert") 
+                p You haven't added any product yet!
+                    
+    include includes/bootstrap.pug         

@@ -1,0 +1,38 @@
+<div>
+  <h1 class="text-center mb-2 mt-2">Enter a product!</h1>
+  <div class="d-flex justify-content-center">
+    <form action="/api/products" method="POST" class="w-50">
+      <div class="mb-3">
+        <label for="product-title" class="form-label">Product Title</label>
+        <input
+          name="title"
+          type="text"
+          class="form-control"
+          id="product-title"
+          aria-describedby="product-title"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="product-price" class="form-label">Product Price</label>
+        <input
+          name="price"
+          type="number"
+          class="form-control"
+          id="product-price"
+          aria-describedby="product-price"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="product-thumbnail" class="form-label">Product Thumbnail</label>
+        <input
+          name="thumbnail"
+          type="text"
+          class="form-control"
+          id="product-thumbnail"
+          aria-describedby="product-thumbnail"
+        />
+      </div>
+      <button class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
