@@ -1,5 +1,9 @@
 const server = io()
+const pug = require('pug');
 
+//Products
+
+//Render without template
 const renderProducts = (data) => {
     console.log('New prod render!');
     let table = '<table class="table table-stripped w-75 m-auto table-hover table-bordered">'
@@ -16,65 +20,73 @@ const renderProducts = (data) => {
     });
     table += '</tbody></table>'
     return table
-    // const htmlProduct = data.map((product, index) => {
-    //     return (`
-    //     <tr class='text-center'>
-    //         <th scope='row'> ${product.id} </th>
-    //         <td class='text-center'><a href=${product.url}>${product.title}</a></td>
-    //         <td class='text-center'>${product.price}</td>
-    //         <td class='text-center'><img src=${product.thumbnail} class='w-25 h-auto' />
-    //     </tr>`
-    //     )
-    //     });
 }
 
+//Render with PUG
+async function renderTemplateTable(data) {
+    try {
+        let resText = await fetch('templates/table.pug')
+        let textTemplate = await resText.text()
+        let compileTemplate = pug.compile(textTemplate)
+        let html = compileTemplate({products: data})
+        return html;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+let productForm = document.getElementById('form-product')
 const addProduct = (e) => {
-    console.log('product happened!');
     const product = {
         title: document.getElementById('product-title').value,
         price: document.getElementById('product-price').value,
         thumbnail: document.getElementById('product-thumbnail').value,
     };
     server.emit('new-product', product);
+    productForm.reset()
     return false
 };
 
-server.on('products', data => {
+server.on('products', async data => {
     if (!data.length) {
-        document.getElementById('product-container').innerHTML = '<div class="alert alert-danger" role="alert"><p>No products added yet!</p></div>'
+        document.getElementById('product-container').innerHTML = '<div class="alert alert-danger w-25" role="alert"><p class="text-center">No products added yet!</p></div>'
     }else{
-        document.getElementById('product-container').innerHTML = renderProducts(data)
+        document.getElementById('product-container').innerHTML = await renderTemplateTable(data)
     }
 });
 
+//Messages & Chat
+
 const renderMessages = (data) => {
-    console.log('New msg render!');
     const htmlMessage = data.map((element, index) => {
         return (`
-        <div class='text-center'>
-            <span class="fw-bold text-blue">${element.author}</span>
-            <span class='text-orange'>${element.date}</span>
-            <span class="fst-italic text-green">${element.text}</span>
+        <div class='text-center d-flex flex-column align-items-start m-2'>
+            <div>
+                <span class="fw-bold" style='color:blue; font-weight: bold;'>${element.author}</span>
+                <span style='color:brown'>${element.date}</span>
+            </div>
+            <p class="fst-italic" style='color:green; font-style: italic'>${element.text}</p>
         </div>`
         )
         }).join('');
-        console.log('rendering')
-        console.log('expected output ' + htmlMessage)
         document.getElementById('messages').innerHTML = htmlMessage;
 }
 
+let text = document.getElementById('message-text');
+
 const addMessage = (e) => {
-    console.log('message happened!');
     const message = {
         author: document.getElementById('message-author').value,
-        text: document.getElementById('message-text').value,
+        text: text.value,
         date: new Date().toLocaleString(),
     };
     server.emit('new-message', message);
+    text.value = ''
+    text.focus()
+
     return false;
 }
 
 server.on('messages', data => {
-    console.log('FRONT got msg');
     renderMessages(data);
 });
