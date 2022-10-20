@@ -1,13 +1,12 @@
-const { options } = require("../config/mariaDB");
-const knex = require("knex")(options);
+const { options } = require("../config/dbConfig");
 
 const createProductTable = () => {
     knex.schema
-        .createTable("products", function (table) {
-            table.increments("id").primary();
-            table.string("title");
-            table.string("description");
-            table.integer("price");
+    .createTable("products", function (table) {
+        table.increments("id").primary();
+        table.string("title");
+        table.string("description");
+        table.integer("price");
             table.integer("stock");
             table.string("code");
             table.string("category");
@@ -20,14 +19,14 @@ const createProductTable = () => {
             console.log(error);
         })
         .finally(() => knex.destroy());
-};
-
-//createProductTable();
-
-const products = require("../database/products.json");
-
-const addProductsDB = () => {
-    knex("products")
+    };
+    
+    //createProductTable();
+    
+    //const products = require("../database/products.json");
+    
+    const addProductsDB = () => {
+        knex("products")
         .insert(products)
         .then(() => {
             console.log("Data inserted");
@@ -36,19 +35,24 @@ const addProductsDB = () => {
             console.log(error);
         })
         .finally(() => knex.destroy());
-};
-
-//addProductsDB();
-
-class Database {
-    constructor(name) {
-        try {
-            this.name = name
-            this.content = knex.from(name).select('*')
-            this.content = JSON.parse(this.content);
-        } catch (error) {
-            console.log(error);
+    };
+    
+    //addProductsDB();
+    
+    class Database {
+        constructor(name, db) {
+            try {
+                this.knex = require("knex")(options[db]);
+                this.name = name
+                this.content = this.knex.from(name).select('*')
+                //this.content = JSON.parse(this.content);
+            } catch (error) {
+                console.log(error);
+            }
         }
+        
+        #updateContent(content) {
+        this.content = content;
     }
 
     async getAll() {
@@ -57,9 +61,8 @@ class Database {
 
     async save(object) {
         try {
-            this.content.push(object);
-            knex(this.name).insert(object)
-                .then(() => console.log('Object saved'))
+            this.knex(this.name).insert(object)
+                .then(() => {console.log('Object saved')})
                 .catch(e => console.log(e))
         } catch (error) {
             console.log(error);
@@ -69,7 +72,7 @@ class Database {
 
     async getById(id) {
         try {
-            let foundElement = await knex.from(this.name).select('*').where('id', '=', Number(id));
+            let foundElement = await this.knex.from(this.name).select('*').where('id', '=', Number(id));
             return foundElement;
         } catch (error) {
             console.log(error);
@@ -77,13 +80,10 @@ class Database {
         }
     }
 
-    #updateContent(content) {
-        this.content = content;
-    }
 
     async updateItem(item, id) {
         try {
-            let updateItem = await knex(this.name).where(item.id, '=', Number(id)).update(item);
+            let updateItem = await this.knex(this.name).where(item.id, '=', Number(id)).update(item);
             return updateItem;
         } catch (error) {
             console.log(error)
@@ -93,7 +93,7 @@ class Database {
 
     async deleteById(item, id) {
         try {
-            let toDelete = await knex(this.name).where(item.id, '=', Number(id)).del();
+            let toDelete = await this.knex(this.name).where(item.id, '=', Number(id)).del();
             console.log(`item ${id} deleted!`);
         } catch (error) {
             return ({ response: Error `deleting ${item}`, error })
@@ -102,7 +102,7 @@ class Database {
 
     async deleteAll() {
         try {
-            await knex(this.name).del();
+            await this.knex(this.name).del();
             console.log(`All products deleted!`);
         } catch (error) {
             return ({ response: Error `deleting ${this.name}`, error })

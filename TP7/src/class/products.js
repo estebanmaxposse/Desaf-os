@@ -1,5 +1,5 @@
-const fileManager = require("../utils/fileManager")
-const productManager = new fileManager(`products.json`);
+const dbManager = require("../utils/dbManager");
+const productManager = new dbManager('products', 'mysql')
 
 class Products {
   constructor() {
@@ -13,7 +13,10 @@ class Products {
     }
   }
 
-  getProducts() {
+  async getProducts() {
+    await productManager.getAll().then(
+      products => this.products = products
+    )
     return this.products;
   }
 

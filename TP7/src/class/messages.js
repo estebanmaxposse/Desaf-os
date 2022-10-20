@@ -1,5 +1,43 @@
-const fileManager = require("../utils/fileManager")
-const messageManager = new fileManager(`messages.json`);
+//const fileManager = require("../utils/fileManager")
+//const messageManager = new fileManager(`messages.json`);
+
+const dbManager = require("../utils/dbManager");
+const messageManager = new dbManager('messages', 'sqlite')
+
+const createMessageTable = () => {
+    knex.schema
+        .createTable("messages", function (table) {
+            table.increments("id").primary();
+            table.string("author");
+            table.string("text");
+            table.string("date");
+        })
+        .then(() => {
+            console.log("Table created");
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+        .finally(() => knex.destroy());
+};
+
+//createMessageTable();
+
+//const storedMessages = require("../database/messages.json");
+
+const addMessagesDB = () => {
+    knex("messages")
+        .insert(storedMessages)
+        .then(() => {
+            console.log("Data inserted");
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+        .finally(() => knex.destroy());
+};
+
+// addMessagesDB();
 
 class Messages {
   constructor() {
@@ -13,7 +51,10 @@ class Messages {
     }
   }
 
-  getMessages() {
+  async getMessages() {
+    await messageManager.getAll().then(
+        messages => this.messages = messages
+      )
     return this.messages;
   }
 

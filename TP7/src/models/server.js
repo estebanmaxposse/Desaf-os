@@ -6,7 +6,7 @@ const Products = require("../class/products");
 const Messages = require("../class/messages");
 const productRouter = require('../routes/productRoutes');
 
-const PORT = 8080;
+const PORT = 8000;
 
 const products = Products.getProducts();
 const messages = Messages.getMessages();
@@ -31,18 +31,18 @@ const startServer = () => {
 }
 
 io.on('connection', async (socket) => {
-    socket.emit('products', Products.getProducts());
-    socket.emit('messages', Messages.getMessages())
+    socket.emit('products', await Products.getProducts());
+    socket.emit('messages', await Messages.getMessages())
 
-    socket.on('new-product', data => {
-        Products.addProduct(data);
-        io.sockets.emit('products', Products.getProducts());
+    socket.on('new-product', async data => {
+        await Products.addProduct(data);
+        io.sockets.emit('products', await Products.getProducts());
     });
 
     socket.on('new-message', async data => {
         await Messages.saveMessage(data);
-        io.sockets.emit('messages', Messages.getMessages());
-        console.log('emitted message with ' + JSON.stringify(Messages.getMessages()))
+        io.sockets.emit('messages', await Messages.getMessages());
+        console.log('emitted message with ', await Messages.getMessages())
     })
 })
 
