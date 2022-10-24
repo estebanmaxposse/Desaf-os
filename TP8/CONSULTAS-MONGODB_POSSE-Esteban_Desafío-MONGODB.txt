@@ -1,0 +1,300 @@
+// switching to ecommerce db
+use ecommerce
+
+// creating products collection
+db.createCollection('products')
+
+// inserting products in collection
+db.products.insertMany([
+{
+    "title": "Dying Light 2. Deluxe Edition",
+    "description": "Use your agility and combat skills to survive, and change the fate of The City. Upgrade your Dying Light 2 Standard Edition to get the Deluxe content.",
+    "price": 3500,
+    "code": "dsadas",
+    "category": "games",
+    "thumbnail": "https://i.imgur.com/zbjM3Ni.png"
+  },
+  {
+    "title": "Elden Ring",
+    "description": "THE NEW FANTASY ACTION RPG. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord in the Lands Between.",
+    "price": 2000,
+	"code": "dsadas",
+    "category": "games",
+    "thumbnail": "https://i.imgur.com/5tY20pw.png"
+  },
+  {
+    "title": "Grand Theft Auto V",
+    "description": "Grand Theft Auto V and GTA Online — now upgraded for PlayStation 5 and Xbox Series X|S with stunning visuals, faster loading, and more — delivering the action-packed, blockbuster Story Mode adventure and the dynamic, ever-evolving online world of GTA...",
+    "price": 2500,
+	"code": "dsadas",
+    "category": "games",
+    "thumbnail": "https://i.imgur.com/wHiX52a.png"
+  },
+  {
+    "title": "Super Mario 3D All Stars",
+    "description": "Play three of Mario's greatest 3D platforming adventures—all in one package! Play three iconic games at home or on the go—all in one package on the Nintendo Switch system! Jump into paintings in Super Mario 64, clean up paint-like goop in Super Mario Sunshine, and fly from planet to planet in Super Mario Galaxy.",
+    "price": 1500,
+	"code": "dsadas",
+    "category": "games",
+    "thumbnail": "https://i.imgur.com/WT7ahEp.png"
+  },
+{
+    "title": "PS5 HD Camera",
+    "description": "Put yourself at the centre of your gameplay sharing with the HD camera for PS5 consoles. Broadcast yourself picture-in-picture4 in 1080p, crop or remove your background and find the perfect angle with the built-in stand.",
+    "price": 4500,
+	"code": "dsadas",
+    "category": "accessories",
+    "thumbnail": "https://i.imgur.com/GtdsFQE.png"
+  },
+  {
+    "title": "PULSE 3D Wireless Headset",
+    "description": "Discover a headset fine-tuned for 3D Audio on PS5 consoles2 and with 7.1 virtual surround sound support on PS4. Offering up to 12 hours of wireless play and dual noise-cancelling microphones, you can keep the party chat flowing with crystal-clear voice capture.",
+    "price": 4000,
+	"code": "dsadas",
+    "category": "accessories",
+    "thumbnail": "https://i.imgur.com/tisXNIH.png"
+  },
+  {
+    "title": "PS5 Dualsense Controller",
+    "description": "Discover a deeper, highly immersive gaming experience with the innovative PS5 controller, featuring haptic feedback2 and dynamic trigger effects2, and a built-in microphone, all integrated into a comfortable design.",
+    "price": 5000,
+	"code": "dsadas",
+    "category": "accessories",
+    "thumbnail": "https://i.imgur.com/TXD8xOU.png"
+  },
+{
+    "title": "PlayStation 4",
+    "description": "Store your games, apps, screenshots and videos with up to 1TB storage inside the PS4 console – slimmer and lighter than the original PS4 model and available in Jet Black and more colors.",
+    "price": 100,
+	"code": "dsadas",
+    "category": "consoles",
+    "thumbnail": "https://i.imgur.com/Y3mQ3XB.png"
+  },
+  {
+    "title": "PlayStation 4 Pro",
+    "description": "The most advanced PlayStation system ever. PS4 Pro is designed to take your favorite PS4 games and add to them with more power for graphics, performance, or features for your 4K HDR TV, or 1080p HD TV. Ready to level up?",
+    "price": 500,
+	"code": "dsadas",
+    "category": "consoles",
+    "thumbnail": "https://i.imgur.com/n0eoCfM.png"
+  }
+])
+
+// inserting one product in collection "products"
+db.products.insertOne({
+    "title": "Nintendo Switch OLED Model",
+    "description": "The new system features a vibrant 7-inch OLED screen, a wide adjustable stand, a dock with a wired LAN port, 64 GB of internal storage, and enhanced audio.",
+    "price": 400,
+	"code": "dsadas",
+    "category": "consoles",
+    "thumbnail": "https://i.imgur.com/Vz3pBBw.png"
+  })
+
+// creating messages collection
+db.createCollection('messages')
+
+// inserting messages in collection
+db.messages.insertMany([
+	{
+		"author": "estebanposse98@gmail.com",
+		"text": "A VIVA VOZ",
+		"date": "10/6/2022, 11:17:09 AM"
+	},
+	{
+		"author": "estebanposse98@gmail.com",
+		"text": "Hi!",
+		"date": "10/6/2022, 11:19:40 AM"
+	},
+	{
+		"author": "labebe@gmail.com",
+		"text": "estebanmaxposse@hotmail.com",
+		"date": "10/6/2022, 11:20:07 AM"
+	},
+	{
+		"author": "estebanposse98@gmail.com",
+		"text": "Hi!",
+		"date": "10/6/2022, 11:21:23 AM"
+	},
+	{
+		"author": "labebe@gmail.com",
+		"text": "estebanmaxposse@hotmail.com",
+		"date": "10/6/2022, 11:22:01 AM"
+	},
+	{
+		"author": "patriabila@gmail.com",
+		"text": "estebanmaxposse@hotmail.com",
+		"date": "10/6/2022, 11:22:59 AM"
+	},
+	{
+		"author": "neieljair.ua@gmail.com",
+		"text": "estebanmaxposse@hotmail.com",
+		"date": "10/6/2022, 11:23:34 AM"
+	},
+	{
+		"author": "neieljair.ua@gmail.com",
+		"text": "ENCENDIDOS",
+		"date": "10/6/2022, 11:24:03 AM"
+	},
+	{
+		"author": "patriabila@gmail.com",
+		"text": "estebanmaxposse@hotmail.com",
+		"date": "10/6/2022, 11:25:03 AM"
+	},
+	{
+		"author": "neieljair.ua@gmail.com",
+		"text": "ENCENDIDOS",
+		"date": "10/6/2022, 11:28:21 AM"
+	}
+])
+
+// listing our collections
+show collections
+
+// listing documents in "products"
+db.products.find()
+
+// listing documents in "messages"
+db.messages.find()
+
+// listing how many documents are in each collection
+db.products.estimatedDocumentCount()
+db.messages.estimatedDocumentCount()
+
+// inserting one product in collection "products"
+db.products.insertOne({
+    "title": "Persona 5 Royal",
+    "description": "Wear the mask. Reveal your truth. Prepare for an all-new RPG experience in Persona 5 Royal based in the universe of the award-winning series, Persona®! Don the mask of Joker and join the Phantom Thieves of Hearts. Break free from the chains of modern society and stage grand heists to infiltrate the minds of the corrupt and make them change their ways! Persona®5 Royal is packed with new characters, story depth, new locations to explore, & a new grappling hook mechanic for access to new areas.",
+    "price": 1000,
+	"code": "dsadas",
+    "category": "games",
+    "thumbnail": "https://i.imgur.com/22TVchi.png"
+})
+
+// listing all products which cost less than $1000
+db.products.find({'price': {$lt: 1000}})
+
+// listing all products which cost between $1000 and $3000
+db.products.find({
+  $and: [
+    {'price': {$lt: 3000}},
+    {'price': {$gt: 1000}}
+  ]
+})
+
+// listing all products which cost more than $3000
+db.products.find({'price': {$gt: 3000}})
+
+// listing only the name of the third cheapest product
+db.products.find({}, {'title': 1}).sort({'price': 1}).skip(2).limit(1)
+
+// updating all products to have a "stock" of 100
+db.products.updateMany({}, {$set: {'stock': 100}})
+
+// updating stock of all products that cost more than $4000 to 0
+db.products.updateMany({'price': {$gt: 4000}}, {$set: {'stock': 0}})
+
+// deleting all the products that cost less than $1000
+db.products.deleteMany({'price': {$lt: 1000}})
+
+// creating user "pepe" with password "asd456" and read-only access
+db.createUser({user: 'pepe', pwd: 'asd456', roles: [{role: 'read', db: 'ecommerce'}]})
+
+///// verifying user "pepe" can only read data /////
+
+// entering "pepe" authentication info
+C:\Users\Usuario>mongosh -u pepe
+Enter password: ******
+
+// reading collection "products"
+ecommerce> db.products.find()
+
+//Output: 
+//[
+  {
+    _id: ObjectId("6355d3f0f86833c261101e04"),
+    title: 'Dying Light 2. Deluxe Edition',
+    description: 'Use your agility and combat skills to survive, and change the fate of The City. Upgrade your Dying Light 2 Standard Edition to get the Deluxe content.',
+    price: 3500,
+    code: 'dsadas',
+    category: 'games',
+    thumbnail: 'https://i.imgur.com/zbjM3Ni.png',
+    stock: 100
+  },
+  {
+    _id: ObjectId("6355d3f0f86833c261101e05"),
+    title: 'Elden Ring',
+    description: 'THE NEW FANTASY ACTION RPG. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord in the Lands Between.',
+    price: 2000,
+    code: 'dsadas',
+    category: 'games',
+    thumbnail: 'https://i.imgur.com/5tY20pw.png',
+    stock: 100
+  },
+  {
+    _id: ObjectId("6355d3f0f86833c261101e06"),
+    title: 'Grand Theft Auto V',
+    description: 'Grand Theft Auto V and GTA Online — now upgraded for PlayStation 5 and Xbox Series X|S with stunning visuals, faster loading, and more — delivering the action-packed, blockbuster Story Mode adventure and the dynamic, ever-evolving online world of GTA...',
+    price: 2500,
+    code: 'dsadas',
+    category: 'games',
+    thumbnail: 'https://i.imgur.com/wHiX52a.png',
+    stock: 100
+  },
+  {
+    _id: ObjectId("6355d3f0f86833c261101e07"),
+    title: 'Super Mario 3D All Stars',
+    description: "Play three of Mario's greatest 3D platforming adventures—all in one package! Play three iconic games at home or on the go—all in one package on the Nintendo Switch system! Jump into paintings in Super Mario 64, clean up paint-like goop in Super Mario Sunshine, and fly from planet to planet in Super Mario Galaxy.",
+    price: 1500,
+    code: 'dsadas',
+    category: 'games',
+    thumbnail: 'https://i.imgur.com/WT7ahEp.png',
+    stock: 100
+  },
+  {
+    _id: ObjectId("6355d3f0f86833c261101e08"),
+    title: 'PS5 HD Camera',
+    description: 'Put yourself at the centre of your gameplay sharing with the HD camera for PS5 consoles. Broadcast yourself picture-in-picture4 in 1080p, crop or remove your background and find the perfect angle with the built-in stand.',
+    price: 4500,
+    code: 'dsadas',
+    category: 'accessories',
+    thumbnail: 'https://i.imgur.com/GtdsFQE.png',
+    stock: 0
+  },
+  {
+    _id: ObjectId("6355d3f0f86833c261101e09"),
+    title: 'PULSE 3D Wireless Headset',
+    description: 'Discover a headset fine-tuned for 3D Audio on PS5 consoles2 and with 7.1 virtual surround sound support on PS4. Offering up to 12 hours of wireless play and dual noise-cancelling microphones, you can keep the party chat flowing with crystal-clear voice capture.',
+    price: 4000,
+    code: 'dsadas',
+    category: 'accessories',
+    thumbnail: 'https://i.imgur.com/tisXNIH.png',
+    stock: 100
+  },
+  {
+    _id: ObjectId("6355d3f0f86833c261101e0a"),
+    title: 'PS5 Dualsense Controller',
+    description: 'Discover a deeper, highly immersive gaming experience with the innovative PS5 controller, featuring haptic feedback2 and dynamic trigger effects2, and a built-in microphone, all integrated into a comfortable design.',
+    price: 5000,
+    code: 'dsadas',
+    category: 'accessories',
+    thumbnail: 'https://i.imgur.com/TXD8xOU.png',
+    stock: 0
+  },
+  {
+    _id: ObjectId("6355dc1ff86833c261101e18"),
+    title: 'Persona 5 Royal',
+    description: 'Wear the mask. Reveal your truth. Prepare for an all-new RPG experience in Persona 5 Royal based in the universe of the award-winning series, Persona®! Don the mask of Joker and join the Phantom Thieves of Hearts. Break free from the chains of modern society and stage grand heists to infiltrate the minds of the corrupt and make them change their ways! Persona®5 Royal is packed with new characters, story depth, new locations to explore, & a new grappling hook mechanic for access to new areas.',
+    price: 1000,
+    code: 'dsadas',
+    category: 'games',
+    thumbnail: 'https://i.imgur.com/22TVchi.png',
+    stock: 100
+  },
+  { _id: ObjectId("6355f57a351c2001a16d3b3b"), title: 'Idk' }
+]//
+
+// attempting to write a file
+db.products.insertOne({title: "Idk"})
+
+// Output:
+// MongoServerError: not authorized on ecommerce to execute command { insert: "products", documents: [ { title: "Idk", _id: ObjectId('6355f6cf351c2001a16d3b3c') } ], ordered: true, lsid: { id: UUID("fa47d175-e383-4fd9-a92a-cd7e5c7f4960") }, $db: "ecommerce" }

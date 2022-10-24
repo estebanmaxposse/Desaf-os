@@ -1,0 +1,89 @@
+[{
+  "_id": {
+    "$oid": "6355d3f0f86833c261101e04"
+  },
+  "title": "Dying Light 2. Deluxe Edition",
+  "description": "Use your agility and combat skills to survive, and change the fate of The City. Upgrade your Dying Light 2 Standard Edition to get the Deluxe content.",
+  "price": 3500,
+  "code": "dsadas",
+  "category": "games",
+  "thumbnail": "https://i.imgur.com/zbjM3Ni.png",
+  "stock": 100
+},{
+  "_id": {
+    "$oid": "6355d3f0f86833c261101e05"
+  },
+  "title": "Elden Ring",
+  "description": "THE NEW FANTASY ACTION RPG. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord in the Lands Between.",
+  "price": 2000,
+  "code": "dsadas",
+  "category": "games",
+  "thumbnail": "https://i.imgur.com/5tY20pw.png",
+  "stock": 100
+},{
+  "_id": {
+    "$oid": "6355d3f0f86833c261101e06"
+  },
+  "title": "Grand Theft Auto V",
+  "description": "Grand Theft Auto V and GTA Online — now upgraded for PlayStation 5 and Xbox Series X|S with stunning visuals, faster loading, and more — delivering the action-packed, blockbuster Story Mode adventure and the dynamic, ever-evolving online world of GTA...",
+  "price": 2500,
+  "code": "dsadas",
+  "category": "games",
+  "thumbnail": "https://i.imgur.com/wHiX52a.png",
+  "stock": 100
+},{
+  "_id": {
+    "$oid": "6355d3f0f86833c261101e07"
+  },
+  "title": "Super Mario 3D All Stars",
+  "description": "Play three of Mario's greatest 3D platforming adventures—all in one package! Play three iconic games at home or on the go—all in one package on the Nintendo Switch system! Jump into paintings in Super Mario 64, clean up paint-like goop in Super Mario Sunshine, and fly from planet to planet in Super Mario Galaxy.",
+  "price": 1500,
+  "code": "dsadas",
+  "category": "games",
+  "thumbnail": "https://i.imgur.com/WT7ahEp.png",
+  "stock": 100
+},{
+  "_id": {
+    "$oid": "6355d3f0f86833c261101e08"
+  },
+  "title": "PS5 HD Camera",
+  "description": "Put yourself at the centre of your gameplay sharing with the HD camera for PS5 consoles. Broadcast yourself picture-in-picture4 in 1080p, crop or remove your background and find the perfect angle with the built-in stand.",
+  "price": 4500,
+  "code": "dsadas",
+  "category": "accessories",
+  "thumbnail": "https://i.imgur.com/GtdsFQE.png",
+  "stock": 0
+},{
+  "_id": {
+    "$oid": "6355d3f0f86833c261101e09"
+  },
+  "title": "PULSE 3D Wireless Headset",
+  "description": "Discover a headset fine-tuned for 3D Audio on PS5 consoles2 and with 7.1 virtual surround sound support on PS4. Offering up to 12 hours of wireless play and dual noise-cancelling microphones, you can keep the party chat flowing with crystal-clear voice capture.",
+  "price": 4000,
+  "code": "dsadas",
+  "category": "accessories",
+  "thumbnail": "https://i.imgur.com/tisXNIH.png",
+  "stock": 100
+},{
+  "_id": {
+    "$oid": "6355d3f0f86833c261101e0a"
+  },
+  "title": "PS5 Dualsense Controller",
+  "description": "Discover a deeper, highly immersive gaming experience with the innovative PS5 controller, featuring haptic feedback2 and dynamic trigger effects2, and a built-in microphone, all integrated into a comfortable design.",
+  "price": 5000,
+  "code": "dsadas",
+  "category": "accessories",
+  "thumbnail": "https://i.imgur.com/TXD8xOU.png",
+  "stock": 0
+},{
+  "_id": {
+    "$oid": "6355dc1ff86833c261101e18"
+  },
+  "title": "Persona 5 Royal",
+  "description": "Wear the mask. Reveal your truth. Prepare for an all-new RPG experience in Persona 5 Royal based in the universe of the award-winning series, Persona®! Don the mask of Joker and join the Phantom Thieves of Hearts. Break free from the chains of modern society and stage grand heists to infiltrate the minds of the corrupt and make them change their ways! Persona®5 Royal is packed with new characters, story depth, new locations to explore, & a new grappling hook mechanic for access to new areas.",
+  "price": 1000,
+  "code": "dsadas",
+  "category": "games",
+  "thumbnail": "https://i.imgur.com/22TVchi.png",
+  "stock": 100
+}]
