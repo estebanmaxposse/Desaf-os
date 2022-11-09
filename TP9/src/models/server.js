@@ -3,6 +3,7 @@ const { Server: HttpServer } = require('http');
 const { Server: IOServer } = require('socket.io');
 const path = require('path');
 const dbManager = require('../utils/mongoManager');
+const Messages = require("../class/messages");
 const productRouter = require('../routes/productRoutes');
 
 const PORT = 8000;

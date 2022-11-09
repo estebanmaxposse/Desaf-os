@@ -1,12 +1,15 @@
 {
   "dependencies": {
+    "@faker-js/faker": "^7.6.0",
     "connect": "^3.7.0",
     "cors": "^2.8.5",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "express-handlebars": "^6.0.6",
+    "faker": "^6.6.6",
     "handlebars": "^4.7.7",
     "knex": "^2.3.0",
+    "mongoose": "^6.7.2",
     "mysql": "^2.18.1",
     "pug": "^3.0.2",
     "socket.io": "^4.5.2",
@@ -14,5 +17,24 @@
   },
   "scripts": {
     "start": "nodemon server.js"
-  }
+  },
+  "name": "desafios_backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/estebanmaxposse/Desafios.git"
+  },
+  "keywords": [
+    "desafios",
+    "coderhouse"
+  ],
+  "author": "Esteban",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/estebanmaxposse/Desafios/issues"
+  },
+  "homepage": "https://github.com/estebanmaxposse/Desafios#readme",
+  "description": "",
+  "type": "module"
 }

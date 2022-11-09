@@ -1,4 +1,4 @@
-const { options } = require("../config/dbConfig");
+const { options } = require("../config/configSql");
 
 const createProductTable = () => {
   knex.schema

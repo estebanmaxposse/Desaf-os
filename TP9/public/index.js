@@ -62,7 +62,7 @@ const renderMessages = (data) => {
         return (`
         <div class='text-center d-flex flex-column align-items-start m-2'>
             <div>
-                <span class="fw-bold" style='color:blue; font-weight: bold;'>${element.author}</span>
+                <span class="fw-bold" style='color:blue; font-weight: bold;'>${element.author.name}</span>
                 <span style='color:brown'>${element.date}</span>
             </div>
             <p class="fst-italic" style='color:green; font-style: italic'>${element.text}</p>
