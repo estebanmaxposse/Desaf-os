@@ -1,10 +1,12 @@
-const { Router } = require("express");
+import { Router } from "express";
 const router = Router();
-const { productValidation } = require("../controllers/services");
-const Product = require("../models/product")
-const dbManager = require('../utils/mongoManager');
+import productValidation from "../controllers/services.js";
+import Product from "../models/product.js";
+import dbManager from '../utils/mongoManager.js';
+import mockProducts from "../utils/mockProducts.js";
 
 const productManager = new dbManager('products');
+const generateProducts = new mockProducts()
 
 const admin = true;
 
@@ -28,6 +30,16 @@ router.get("/api/products", async (req, res) => {
         } else {
             res.json({ error: "Couldn't find any products!" })
         }
+    } catch (error) {
+        throw new Error(error);
+    };
+});
+
+router.get("/api/products-test", async (req, res) => {
+    try {
+        const products = generateProducts.populate();
+        console.log(products);
+        res.render('productsRandom.pug', {products})
     } catch (error) {
         throw new Error(error);
     };
@@ -114,4 +126,4 @@ router.delete("/api/products/:id", async (req, res) => {
     };
 });
 
-module.exports = router;
+export default router;

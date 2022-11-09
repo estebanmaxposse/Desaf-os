@@ -1,7 +1,7 @@
-const { model } = require("mongoose");
-const mongoose = require("mongoose");
-const productJSON = require("../database/products.json");
-const productSchema = require('../models/schemas/productSchema');
+import { model } from "mongoose";
+import { connect } from "mongoose";
+// import { forEach } from "../database/products.json";
+import productSchema from '../models/schemas/productSchema.js';
 
 const productsCollection = "products";
 
@@ -15,7 +15,7 @@ class MongoClient {
     async connectDb() {
         try {
             const dbUrl = this.URL;
-            let res = mongoose.connect(dbUrl, {
+            let res = connect(dbUrl, {
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
             });
@@ -30,13 +30,13 @@ const settingDb = async () => {
     try {
         //Connecting to DB
         const URL = "mongodb+srv://estebanmaxposse:GetStuff8@ecommerce.qwzmjs0.mongodb.net/?retryWrites=true&w=majority";
-        let res = await mongoose.connect(URL, {
+        let res = await connect(URL, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
 
         //Create db from json
-        await productJSON.forEach((elem) => {
+        await forEach((elem) => {
             new products(elem).save();
             console.log(products(elem));
         });
@@ -54,4 +54,4 @@ const settingDb = async () => {
 
 // settingDb()
 
-module.exports = MongoClient;
+export default MongoClient;

@@ -1,4 +1,4 @@
-const { Schema } = require("mongoose");
+import { Schema } from "mongoose";
 
 const authorSchema = new Schema({
     name: { type: String },
@@ -15,4 +15,4 @@ const messageSchema = new Schema({
     date: { type: String }
 });
 
-module.exports = messageSchema;
+export default messageSchema;

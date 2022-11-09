@@ -1,11 +1,9 @@
-const Products = require('../class/products');
-
-const productValidation = (title, price, thumbnail) => {
-    if (!title || !price || !thumbnail) {
+const productValidation = (title, price, description, code, thumbnail, stock, timestamp, category) => {
+    if (!title || !price || !description || !code || !thumbnail || !stock || !timestamp || !category) {
         return { error: 'Please fill out every field'}
     } else {
-        return { title, price, thumbnail };
+        return { title, price, description, code, thumbnail, stock, timestamp, category };
     };
 };
 
-module.exports = { productValidation }
+export default { productValidation }

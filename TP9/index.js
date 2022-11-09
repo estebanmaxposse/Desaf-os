@@ -1,3 +1,3 @@
-const server = require('./src/models/server')
+import server from './src/models/server.js';
 
 server();

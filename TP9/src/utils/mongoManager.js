@@ -1,8 +1,8 @@
-const { model } = require("mongoose");
-const MongoClient = require('../config/configMongo');
-const productSchema = require('../models/schemas/productSchema');
-const cartSchema = require('../models/schemas/cartSchema')
-const messageSchema = require('../models/schemas/messageSchema')
+import { model } from "mongoose";
+import MongoClient from '../config/configMongo.js';
+import productSchema from '../models/schemas/productSchema.js';
+import cartSchema from '../models/schemas/cartSchema.js';
+import messageSchema from '../models/schemas/messageSchema.js';
 
 const client = new MongoClient('mongodb+srv://estebanmaxposse:GetStuff8@ecommerce.qwzmjs0.mongodb.net/?retryWrites=true&w=majority');
 client.connectDb()
@@ -78,4 +78,4 @@ class ContainerMongoDB {
     };
 };
 
-module.exports = ContainerMongoDB;
+export default ContainerMongoDB;

@@ -1,12 +1,14 @@
-const express = require('express');
-const { Server: HttpServer } = require('http'); 
-const { Server: IOServer } = require('socket.io');
-const path = require('path');
-const dbManager = require('../utils/mongoManager');
-const Messages = require("../class/messages");
-const productRouter = require('../routes/productRoutes');
+import express, { json, urlencoded, static as staticFiles } from 'express';
+import { Server as HttpServer } from 'http'; 
+import { Server as IOServer } from 'socket.io';
+import { join } from 'path';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import dbManager from '../utils/mongoManager.js';
+import productRouter from '../routes/productRoutes.js';
 
 const PORT = 8000;
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const productManager = new dbManager('products');
 const messageManager = new dbManager('messages')
@@ -19,11 +21,11 @@ const httpServer = new HttpServer(app);
 const io = new IOServer(httpServer)
 
 app.set('view engine', 'pug');
-app.set('views', path.join(__dirname, '../../views'));
+app.set('views', join(__dirname, '../../views'));
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true}));
-app.use(express.static(path.join(__dirname, '../../public')))
+app.use(json());
+app.use(urlencoded({ extended: true}));
+app.use(staticFiles(join(__dirname, '../../public')))
 
 app.use(productRouter);
 
@@ -51,4 +53,4 @@ io.on('connection', async (socket) => {
 
 
 
-module.exports = startServer;
+export default startServer;

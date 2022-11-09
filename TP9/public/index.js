@@ -25,7 +25,7 @@ const renderProducts = (data) => {
 //Render with PUG
 async function renderTemplateTable(data) {
     try {
-        let resText = await fetch('templates/table.pug')
+        let resText = await fetch('templates/productTable.pug')
         let textTemplate = await resText.text()
         let compileTemplate = pug.compile(textTemplate)
         let html = compileTemplate({products: data})

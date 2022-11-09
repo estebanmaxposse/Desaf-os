@@ -1,17 +1,17 @@
-const fs = require("fs");
-const path = require("path");
+import { readFileSync, promises, writeFileSync } from "fs";
+import { join } from "path";
 
 class File {
   constructor(name) {
-    this.name = path.join(__dirname, '../database', `${name}` );
+    this.name = join(__dirname, '../database', `${name}` );
     
     try {
-      this.content = fs.readFileSync(this.name, 'utf-8');
+      this.content = readFileSync(this.name, 'utf-8');
       this.content = JSON.parse(this.content);
     } catch (error) {
       console.log(error);
       this.content = [];
-      fs.promises.writeFile(this.name, JSON.stringify(this.content, null, '\t'))
+      promises.writeFile(this.name, JSON.stringify(this.content, null, '\t'))
     };
   };
   
@@ -27,7 +27,7 @@ class File {
         object.id = this.content.length + 1
       }
       this.content.push(object);
-      fs.promises.writeFile(this.name, JSON.stringify(this.content, null, '\t'))
+      promises.writeFile(this.name, JSON.stringify(this.content, null, '\t'))
         .then(() => {
           console.log('Object Saved')
         })
@@ -67,7 +67,7 @@ class File {
       this.#updateContent(content)
 
       try {
-        fs.writeFileSync(this.name, JSON.stringify(content, null, '\t'))
+        writeFileSync(this.name, JSON.stringify(content, null, '\t'))
       } catch (error) {
         console.log(error);
       }
@@ -83,7 +83,7 @@ class File {
     const content = await this.getAll();
     const toDelete = content.filter((item) => item.id !== Number(id));
     try {
-      await fs.promises.writeFile(
+      await promises.writeFile(
         this.name,
         JSON.stringify(toDelete, null, 4)
       );
@@ -96,7 +96,7 @@ class File {
 
   async deleteAll() {
     try {
-      await fs.promises.writeFile(this.filePath, JSON.stringify([]));
+      await promises.writeFile(this.filePath, JSON.stringify([]));
       console.log(`All products deleted!`);
     } catch (error) {
       throw new Error(`Error deleting all products: ${error}`);
@@ -104,4 +104,4 @@ class File {
   };
 };
 
-module.exports = File;
+export default File;

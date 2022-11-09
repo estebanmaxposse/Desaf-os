@@ -10,7 +10,7 @@ if products.length !== 0
                 tbody
                     each product in products
                         tr
-                            th(scope="row" class='text-center')= product.id
+                            th(scope="row" class='text-center')= product._id
                             
                             td(class='text-center')
                                 a(href=product.url)= product.title

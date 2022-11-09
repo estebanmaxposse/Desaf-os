@@ -1,8 +1,8 @@
-const  {Schema}  = require("mongoose");
+import { Schema } from "mongoose";
 
 const cartSchema = new Schema({
     timestamp: { type: String, require: true },
     products: []
 });
 
-module.exports = cartSchema;
+export default cartSchema;
