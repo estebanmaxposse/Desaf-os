@@ -62,10 +62,10 @@ const renderMessages = (data) => {
         return (`
         <div class='text-center d-flex flex-column align-items-start m-2'>
             <div>
-                <span class="fw-bold" style='color:blue; font-weight: bold;'>${element.author.name}</span>
-                <span style='color:brown'>${element.date}</span>
+                <span class="fw-bold" style='color:blue; font-weight: bold;'>${element._doc.author.name}</span>
+                <span style='color:brown'>${element._doc.date}</span>
             </div>
-            <p class="fst-italic" style='color:green; font-style: italic'>${element.text}</p>
+            <p class="fst-italic" style='color:green; font-style: italic'>${element._doc.text}</p>
         </div>`
         )
         }).join('');
@@ -77,10 +77,14 @@ let text = document.getElementById('message-text');
 const addMessage = (e) => {
     const message = {
         author: {
-            name: document.getElementById('message-author').value
+            name: document.getElementById('message-name').value,
+            surname: document.getElementById('message-surname').value,
+            age: document.getElementById('message-age').value,
+            nick: document.getElementById('message-nick').value,
+            avatar: document.getElementById('message-avatar').value,
+            email: document.getElementById('message-author').value
         },
         text: text.value,
-        date: new Date().toLocaleString(),
     };
     server.emit('new-message', message);
     text.value = ''
@@ -89,6 +93,27 @@ const addMessage = (e) => {
     return false;
 }
 
+//Message denormalizer
+const denormalize = normalizr.denormalize;
+const schema = normalizr.schema;
+
+const schemaAuthor = new schema.Entity('author', {}, {idAttribute: '_id'});
+const schemaMessage = new schema.Entity('message', {author: schemaAuthor}, {idAttribute: '_id'} );
+const schemaMessages = new schema.Entity('messages', {messages: [schemaMessage]}, {idAttribute: '_id'});
+
 server.on('messages', data => {
-    renderMessages(data);
+    let normalizedMessagesSize = JSON.stringify(data).length
+    console.log(data, normalizedMessagesSize);
+
+    let denormalizedMessages = denormalize(data.result, schemaMessages, data.entities)
+    let denormalizedMessagesSize = JSON.stringify(denormalizedMessages).length
+    console.log(denormalizedMessages, denormalizedMessagesSize);
+
+    let compressionPercentage = parseInt((normalizedMessagesSize * 100) / denormalizedMessagesSize);
+    console.log(`${compressionPercentage}%`);
+
+    document.getElementById('percentage-rate').innerText = `Compression rate = ${compressionPercentage}`
+
+    console.log(denormalizedMessages.messages);
+    renderMessages(denormalizedMessages.messages);
 });

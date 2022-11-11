@@ -6,15 +6,13 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import dbManager from '../utils/mongoManager.js';
 import productRouter from '../routes/productRoutes.js';
+import { normalizeMessage } from '../controllers/dataNormalizer.js';
 
 const PORT = 8000;
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const productManager = new dbManager('products');
-const messageManager = new dbManager('messages')
-
-const products = productManager.getAll();
-const messages = messageManager.getAll();
+const messageManager = new dbManager('messages');
 
 const app = express();
 const httpServer = new HttpServer(app);
@@ -37,7 +35,7 @@ const startServer = () => {
 
 io.on('connection', async (socket) => {
     socket.emit('products', await productManager.getAll());
-    socket.emit('messages', await messageManager.getAll())
+    socket.emit('messages', await getNormalizedMessages())
 
     socket.on('new-product', async data => {
         await productManager.save(data);
@@ -45,12 +43,19 @@ io.on('connection', async (socket) => {
     });
 
     socket.on('new-message', async data => {
+        data.date = new Date().toLocaleString();
         await messageManager.save(data);
-        io.sockets.emit('messages', await messageManager.getAll());
-        console.log('emitted message with ', await messageManager.getAll())
+        io.sockets.emit('messages', await getNormalizedMessages());
     })
 })
 
-
+//NORMALIZE MSGS FUNCTION
+const getNormalizedMessages = async () => {
+    const messages = await messageManager.getAll();
+    console.log(messages);
+    const normalizedMessages = normalizeMessage({id: 'messages', messages});
+    console.log(normalizedMessages);
+    return normalizedMessages
+}
 
 export default startServer;

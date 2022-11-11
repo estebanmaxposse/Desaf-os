@@ -1,6 +1,6 @@
 import { Router } from "express";
 const router = Router();
-import productValidation from "../controllers/services.js";
+import productValidation from "../controllers/validator.js";
 import Product from "../models/product.js";
 import dbManager from '../utils/mongoManager.js';
 import mockProducts from "../utils/mockProducts.js";
