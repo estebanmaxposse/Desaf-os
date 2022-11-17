@@ -1,0 +1,11 @@
+include includes/head.pug
+    
+body
+
+    div(class="alert alert-danger d-flex justify-content-between" role="alert")
+        h2 See you soon: #{user}
+
+    script.
+        setTimeout(() => {
+            window.location.href = 'pages/login.html'
+        }, 2000)
