@@ -8,6 +8,7 @@ import dbManager from '../utils/mongoManager.js';
 import productRouter from '../routes/productRoutes.js';
 import sessionRouter from '../routes/sessionRoutes.js';
 import miscRouter from '../routes/miscRoutes.js'
+import forkRouter from '../controllers/serverFork.js'
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
@@ -59,6 +60,7 @@ app.use(cookieParser());
 app.use(productRouter);
 app.use('/api/auth', sessionRouter);
 app.use(miscRouter)
+app.use(forkRouter)
 
 
 const startServer = () => {

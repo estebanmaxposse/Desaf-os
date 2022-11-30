@@ -1,6 +1,6 @@
 {
     "vscode-pets.petType": "dog",
-    "vscode-pets.theme": "beach",
+    "vscode-pets.theme": "none",
     "vscodeReactRefactor.enableDebug": false,
     "vscode-pets.throwBallWithMouse": false
 }
