@@ -7,17 +7,13 @@ import { fileURLToPath } from 'url';
 import dbManager from '../utils/mongoManager.js';
 import productRouter from '../routes/productRoutes.js';
 import sessionRouter from '../routes/sessionRoutes.js';
+import miscRouter from '../routes/miscRoutes.js'
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import passport from 'passport';
 import config from '../config/globalConfig.js';
-import parseArgs from 'minimist';
-
-//Args config
-const argsOptions = { default: { port: 8080 } }
-const args = parseArgs(process.argv.slice(2), argsOptions)
-console.log(args);
+import args from '../utils/argsHandler.js'
 
 // import { normalizeMessage } from '../controllers/dataNormalizer.js';
 
@@ -62,6 +58,7 @@ app.use(cookieParser());
 //Routes
 app.use(productRouter);
 app.use('/api/auth', sessionRouter);
+app.use(miscRouter)
 
 
 const startServer = () => {
