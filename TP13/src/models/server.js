@@ -20,7 +20,7 @@ import CPU from 'os'
 
 // import { normalizeMessage } from '../controllers/dataNormalizer.js';
 
-const PORT = process.argv[2];
+const PORT = args.port;
 console.log(PORT);
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

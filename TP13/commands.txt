@@ -1,0 +1,30 @@
+//NODEMON
+nodemon index.js --port 8000 --serverMode fork
+nodemon index.js --port 8000 --serverMode cluster
+
+//FOREVER
+forever start index.js --port 8000 --serverMode fork
+forever start index.js --port 8000 --serverMode cluster
+forever list
+TASKLIST /FI "imagename eq node.exe"
+forever stopall
+
+//PM2
+pm2 start index.js --name="ServerFork" --watch -- --port=8000 --serverMode='fork'
+pm2 start index.js --name="ServerFork" --watch -i 0 -- --port=8001 --serverMode='fork'
+pm2 monit
+pm2 stop all
+pm2 delete all
+
+//NGINX
+pm2 start index.js --name="ServerFork" --watch -- --port=8080 --serverMode='fork'
+pm2 start index.js --name="ServerCluster1" --watch -- --port=8081 --serverMode='cluster'
+pm2 monit
+
+pm2 stop ServerCluster0
+
+pm2 start index.js --name="ServerCluster2" --watch -- --port=8082 --serverMode='fork'
+pm2 start index.js --name="ServerCluster3" --watch -- --port=8083 --serverMode='fork'
+pm2 start index.js --name="ServerCluster4" --watch -- --port=8084 --serverMode='fork'
+pm2 start index.js --name="ServerCluster5" --watch -- --port=8085 --serverMode='fork'
+pm2 monit
