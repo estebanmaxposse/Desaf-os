@@ -124,7 +124,7 @@ const logOut = () => {
     window.location.href = '/api/auth/logout'
 }
 
-fetch('http://localhost:8000/api/auth/user')
+fetch(`/api/auth/user`)
     .then(res => {
         if (res.status !== 200) {
             document.getElementById('login-button').innerHTML = `
