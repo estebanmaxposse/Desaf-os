@@ -1,0 +1,21 @@
+if products.length !== 0
+            table(class="table table-stripped w-75 m-auto table-hover table-bordered")
+                thead
+                    tr
+                        th(scope="col" class='text-center') Id #
+                        th(scope="col" class='text-center') Title
+                        th(scope="col" class='text-center') Price
+                        th(scope="col" class='text-center') Image
+
+                tbody
+                    each product in products
+                        tr
+                            th(scope="row" class='text-center')= product._id
+                            
+                            td(class='text-center')
+                                a(href=product.url)= product.title
+                            
+                            td(class='text-center')= product.price
+                            
+                            td(class='text-center')
+                                img(src=product.thumbnail class="w-25 h-auto")
