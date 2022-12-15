@@ -18,6 +18,7 @@ import args from '../utils/argsHandler.js'
 import cluster from 'cluster';
 import CPU from 'os'
 import compression from  'compression'
+import { routeLog, invalidRouteLog } from '../controllers/logger.js';
 
 // import { normalizeMessage } from '../controllers/dataNormalizer.js';
 
@@ -61,11 +62,25 @@ app.use(staticFiles(join(__dirname, '../../public')));
 app.use(cookieParser());
 
 //Routes
-app.use(compression(), productRouter);
-app.use('/api/auth', compression(), sessionRouter);
-app.use(compression(), miscRouter)
-app.use(compression(), forkRouter)
+app.use(compression(), routeLog, productRouter);
+app.use('/api/auth', compression(), routeLog, sessionRouter);
+app.use(compression(), routeLog, miscRouter)
+app.use(compression(), routeLog, forkRouter)
 
+app.use(invalidRouteLog, (req, res, next) => {
+    res.status(404);
+    res.json({
+        error: {
+          'name':'Error',
+          'status':404,
+          'message':'Invalid Request',
+          'statusCode':404,
+          'stack':'http://localhost:8080/'
+        },
+         message: 'Testing!'
+      });
+    next();
+   });
 
 const startServer = () => {
     switch (args.serverMode) {

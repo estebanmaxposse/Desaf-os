@@ -4,6 +4,7 @@ import productValidation from "../controllers/validator.js";
 import Product from "../models/product.js";
 import dbManager from '../utils/mongoManager.js';
 import mockProducts from "../utils/mockProducts.js";
+import { errorLog } from "../controllers/logger.js";
 
 const productManager = new dbManager('products');
 const generateProducts = new mockProducts()
@@ -17,7 +18,7 @@ router.get("/", async (req, res) => {
         const products = await productManager.getAll();
         res.json(products);
     } catch (error) {
-        throw new Error(error);
+        errorLog(error)
     };
 });
 
@@ -31,17 +32,16 @@ router.get("/api/products", async (req, res) => {
             res.json({ error: "Couldn't find any products!" })
         }
     } catch (error) {
-        throw new Error(error);
+        errorLog(error)
     };
 });
 
 router.get("/api/products-test", async (req, res) => {
     try {
         const products = generateProducts.populate();
-        console.log(products);
         res.render('productsRandom.pug', {products})
     } catch (error) {
-        throw new Error(error);
+        errorLog(error)
     };
 });
 
@@ -57,9 +57,10 @@ router.get("/api/products/:id", async (req, res) => {
             res.json(product);
         } else {
             res.json({ error: "Couldn't find the specified product!" })
+            errorLog("Couldn't find the specified product!")
         }
     } catch (error) {
-        throw new Error(error);
+        errorLog(error)
     };
 });
 
@@ -78,7 +79,7 @@ router.post("/api/products", async (req, res) => {
             const product = await productManager.save(validatedProduct);
         }
     } catch (error) {
-        throw new Error(error);
+        errorLog(error)
     };
 });
 
@@ -92,7 +93,7 @@ router.put("/api/products/:id", async (req, res) => {
         await productManager.updateItem(updatedProduct);
         res.json(updatedProduct);
     } catch (error) {
-        throw new Error(error);
+        errorLog(error)
     };
 });
 
@@ -122,7 +123,7 @@ router.delete("/api/products/:id", async (req, res) => {
         // console.log(allCarts);
         // fs.promises.writeFile(cartManager.name, JSON.stringify(allCarts, null, '\t'))
     } catch (error) {
-        throw new Error(error);
+        errorLog(error)
     };
 });
 

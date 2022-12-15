@@ -3,6 +3,7 @@ const router = Router();
 import dbManager from '../utils/mongoManager.js';
 const userManager = new dbManager('users');
 import passport from '../config/passportStrats.js'
+import { errorLog } from "../controllers/logger.js";
 
 router.get('/session', (req, res) => {
     req.session.views = req.session.views ? req.session.views + 1 : 1
@@ -52,11 +53,13 @@ router.get('/signUpFailed', (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
-    let user = req.user
-    req.logout(console.log);
-    res.render('logout.pug', {user: user.username})
+    try {
+        let user = req.user
+        req.logout(console.log);
+        res.render('logout.pug', {user: user.username})
+    } catch (error) {
+        errorLog(error, "Couldn't log out!")
+    }
 })
-
-
 
 export default router;

@@ -5,6 +5,7 @@ import cartSchema from '../models/schemas/cartSchema.js';
 import messageSchema from '../models/schemas/messageSchema.js';
 import userSchema from '../models/schemas/userSchema.js'
 import config from '../config/globalConfig.js'
+import { errorLog } from "../controllers/logger.js";
 
 const client = new MongoClient(config.MONGOATLAS_URL);
 client.connectDb()
@@ -37,8 +38,7 @@ class ContainerMongoDB {
             let savedObject = await saveObjectModel.save();
             return savedObject
         } catch (error) {
-            console.log(error);
-            throw new Error(`Failed to add object!`)
+            errorLog(error, `Failed to add object!`)
         };
     };
 
@@ -47,7 +47,7 @@ class ContainerMongoDB {
             let foundElement = await this.content.findOne({ '_id': id });
             return foundElement;
         } catch (error) {
-            throw new Error(`Couldn't find ${id} object! ${error}`);
+            errorLog(error, `Couldn't find ${id} object! ${error}`)
         };
     };
 
@@ -56,10 +56,10 @@ class ContainerMongoDB {
         try {
             foundUser = await this.content.findOne({ 'username': username });
         } catch (error) {
-            throw new Error(`Couldn't find ${username} object! ${error}`)
+            errorLog(error, `Couldn't find ${username} object! ${error}`)
         }
         if (!foundUser) {
-            throw new Error("User not found")
+            errorLog('User not found')
         }
         return foundUser;
     }
@@ -69,18 +69,16 @@ class ContainerMongoDB {
             const updateItem = await this.content.updateOne({ '_id': item.id }, item)
             return { response: `${item} updated!` };
         } catch (error) {
-            console.log(error);
-            return { response: Error`updating ${item}`, error };
+            errorLog(error, `Error updating ${item}`)
         }
     }
 
     async deleteById(id) {
         try {
             const deleteItem = await this.content.deleteOne({ '_id': id })
-            console.log(deleteItem);
             return { response: `Deleted item: ${id}` };
         } catch (error) {
-            return { response: Error`deleting ${id}`, error };
+            errorLog(error, `Error deleting ${id}`)
         }
     };
 
@@ -89,7 +87,7 @@ class ContainerMongoDB {
             await this.content.deleteMany();
             console.log(`All products deleted!`);
         } catch (error) {
-            throw new Error(`Error deleting all products: ${error}`);
+            errorLog(error, `Error deleting all products`)
         };
     };
 };
