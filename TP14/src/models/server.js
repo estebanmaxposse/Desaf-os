@@ -17,6 +17,7 @@ import config from '../config/globalConfig.js';
 import args from '../utils/argsHandler.js'
 import cluster from 'cluster';
 import CPU from 'os'
+import compression from  'compression'
 
 // import { normalizeMessage } from '../controllers/dataNormalizer.js';
 
@@ -60,10 +61,10 @@ app.use(staticFiles(join(__dirname, '../../public')));
 app.use(cookieParser());
 
 //Routes
-app.use(productRouter);
-app.use('/api/auth', sessionRouter);
-app.use(miscRouter)
-app.use(forkRouter)
+app.use(compression(), productRouter);
+app.use('/api/auth', compression(), sessionRouter);
+app.use(compression(), miscRouter)
+app.use(compression(), forkRouter)
 
 
 const startServer = () => {
