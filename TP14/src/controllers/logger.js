@@ -3,10 +3,10 @@ import pino from "pino";
 const loggerInfo = pino()
 loggerInfo.level = 'info'
 
-const loggerWarn = pino(pino.destination('../warn.log'))
+const loggerWarn = pino(pino.destination('./warn.log'))
 loggerWarn.level = 'warn'
 
-const loggerError = pino(pino.destination('../error.log'))
+const loggerError = pino(pino.destination('./error.log'))
 loggerError.level = 'error'
 
 const routeLog = (req, res, next) => {

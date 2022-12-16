@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
+    "autocannon": "^7.10.0",
     "bcrypt": "^5.1.0",
     "bootstrap": "^5.2.2",
     "compression": "^1.7.4",
@@ -26,13 +27,15 @@
     "pino": "^8.8.0",
     "pino-http": "^8.3.0",
     "pug": "^3.0.2",
+    "save": "^2.9.0",
     "socket.io": "^4.5.2",
     "sqlite3": "^5.1.2",
     "winston": "^3.8.2",
     "yargs": "^17.6.2"
   },
   "scripts": {
-    "start": "nodemon server.js"
+    "test": "node TP14/src/utils/benchmark.js",
+    "start": "0x TP14/index.js"
   },
   "name": "desafios_backend",
   "version": "1.0.0",
