@@ -1,0 +1,30 @@
+include includes/head.pug
+    
+body
+
+    div
+    h1(class="text-center mb-2 mt-2") Enter a product!
+    div(class="d-flex justify-content-center")
+        form(onsubmit='return addProduct(this)' class="w-50")
+            div(class="mb-3")
+                label(for="product-title" class="form-label") Product Title
+                input(name="title" type="text" class="form-control" id="product-title" aria-describedby="product-title")
+            div(class="mb-3")
+                label(for="product-price" class="form-label") Product Price
+                input(name="price" type="number" class="form-control" id="product-price" aria-describedby="product-price")
+            div(class="mb-3")
+                label(for="product-thumbnail" class="form-label") Product Thumbnail
+                input(name="thumbnail" type="text" class="form-control" id="product-thumbnail" aria-describedby="product-thumbnail")
+            button(class="btn btn-primary" type='submit') Submit
+
+    div
+        include products.pug
+    
+    div
+        include chat.pug
+
+    script(
+        src="index.js"
+    )
+
+    include includes/bootstrap.pug         

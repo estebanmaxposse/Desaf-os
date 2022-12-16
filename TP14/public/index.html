@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Api PUG</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"
+        integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k"
+        crossorigin="anonymous"></script>
+    <script src="https://pugjs.org/js/pug.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">API</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/api/products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/api/products-test">Mock-up Generator</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/info">Info</a>
+                    </li>
+                    <li class="nav-item" id="login-button">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="welcome"></div>
+
+    <div class="row w-100 mt-3 mb-3">
+        <div class="col-md-7">
+            <h1 class="text-center mb-2 mt-2">Enter a product!</h1>
+            <div class="d-flex justify-content-center m-3">
+                <form onsubmit="return addProduct(this)" class="w-50">
+                    <div class="mb-3">
+                        <label for="product-title" class="form-label">
+                            Product Title
+                        </label>
+                        <input name="title" type="text" class="form-control" id="product-title"
+                            aria-describedby="product-title" ) />
+                    </div>
+                    <div class="mb-3">
+                        <label for="product-price" class="form-label">
+                            Product Price
+                        </label>
+                        <input name="price" type="number" class="form-control" id="product-price"
+                            aria-describedby="product-price" ) />
+                    </div>
+                    <div class="mb-3">
+                        <label for="product-thumbnail" class="form-label">
+                            Product Thumbnail
+                        </label>
+                        <input name="thumbnail" type="text" class="form-control" id="product-thumbnail"
+                            aria-describedby="product-thumbnail" ) />
+                    </div>
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </form>
+            </div>
+
+            <div id="product-container" class="d-flex justify-content-center"></div>
+        </div>
+
+        <div class="d-flex col-md-5 flex-column" style="max-height: 100vh">
+            <div class="d-flex">
+                <form onsubmit="return addMessage(this)" class="" id="form-product">
+                    <div class="mb-3">
+                        <label for="message-author" class="form-label">Email </label>
+                        <input name="email" type="email" class="form-control" id="message-author"
+                            aria-describedby="message-author" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-name" class="form-label">Name </label>
+                        <input name="name" type="text" class="form-control" id="message-name"
+                            aria-describedby="message-name" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-surname" class="form-label">Surname </label>
+                        <input name="surname" type="text" class="form-control" id="message-surname"
+                            aria-describedby="message-surname" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-age" class="form-label">Age </label>
+                        <input name="age" type="number" class="form-control" id="message-age"
+                            aria-describedby="message-age" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-nick" class="form-label">Nick </label>
+                        <input name="nick" type="text" class="form-control" id="message-nick"
+                            aria-describedby="message-nick" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-avatar" class="form-label">Avatar </label>
+                        <input name="avatar" type="text" class="form-control" id="message-avatar"
+                            aria-describedby="message-avatar" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-text" class="form-label">What you wanna say?
+                        </label>
+                        <input name="text" type="text" class="form-control" id="message-text"
+                            aria-describedby="message-text" required />
+                    </div>
+                    <button class="btn btn-primary" type="submit" id="chat-button">
+                        Submit
+                    </button>
+                </form>
+            </div>
+
+            <!-- <p id="percentage-rate">Compression rate =</p> -->
+            <div id="messages" class="d-flex flex-column align-items-start m-3"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/normalizr@3.6.2/dist/normalizr.browser.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+</body>
+
+</html>

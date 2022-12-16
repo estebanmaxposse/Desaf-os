@@ -1,0 +1,46 @@
+include includes/head.pug
+include includes/header.pug
+
+body
+    div(class="d-flex justify-content-center")
+        h1 Some useful info
+
+    div(class='d-flex justify-content-center')
+        div(class='list-group w-50')
+            div(class='list-group-item')
+                div(class='d-flex w-100 justify-content-between')
+                    h5(class='mb-1') Initial arguments
+                ul(class="list-group")
+                    each val, key in info.args
+                        if val != ''
+                            li(class='list-group-item')= key + ': ' + val
+            div(class='list-group-item')
+                div(class='d-flex w-100 justify-content-between')
+                    h5(class='mb-1') OS
+                p(class='mb-1') #{info.os}
+            div(class='list-group-item')
+                div(class='d-flex w-100 justify-content-between')
+                    h5(class='mb-1') Node ver.
+                p(class='mb-1') #{info.nodeVer}
+            div(class='list-group-item')
+                div(class='d-flex w-100 justify-content-between')
+                    h5(class='mb-1') Memory Usage
+                ul(class="list-group")
+                    each val, key in info.memory
+                        li(class='list-group-item')= key + ': ' + val
+            div(class='list-group-item')
+                div(class='d-flex w-100 justify-content-between')
+                    h5(class='mb-1') Execution path
+                p(class='mb-1') #{info.path}
+            div(class='list-group-item')
+                div(class='d-flex w-100 justify-content-between')
+                    h5(class='mb-1') Process id
+                p(class='mb-1') #{info.id}
+            div(class='list-group-item')
+                div(class='d-flex w-100 justify-content-between')
+                    h5(class='mb-1') Project folder
+                p(class='mb-1') #{info.folder}
+            div(class='list-group-item')
+                div(class='d-flex w-100 justify-content-between')
+                    h5(class='mb-1') CPUs
+                p(class='mb-1') #{info.CPUs}
