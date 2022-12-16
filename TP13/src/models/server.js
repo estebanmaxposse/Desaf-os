@@ -15,10 +15,13 @@ import MongoStore from 'connect-mongo';
 import passport from 'passport';
 import config from '../config/globalConfig.js';
 import args from '../utils/argsHandler.js'
+import cluster from 'cluster';
+import CPU from 'os'
 
 // import { normalizeMessage } from '../controllers/dataNormalizer.js';
 
 const PORT = args.port;
+console.log(PORT);
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const productManager = new dbManager('products');
@@ -64,9 +67,40 @@ app.use(forkRouter)
 
 
 const startServer = () => {
-    httpServer.listen(PORT, () => {
-        console.log(`Server running on ${PORT}`);
-    });
+    switch (args.serverMode) {
+        case 'fork':
+            httpServer.listen(PORT, () => {
+                console.log(`Server running on ${PORT}`);
+            });
+            break;
+
+        case 'cluster':
+            if (cluster.isPrimary) {
+                const numCPUs = CPU.cpus().length
+                console.log(`Master ${process.pid} setting up ${numCPUs} workers...`);
+        
+                for (let index = 0; index < numCPUs; index++) {
+                    cluster.fork()
+                }
+        
+                cluster.on('online', (worker) => {
+                    console.log('Worker ' + worker.process.pid + ' is online');
+                });
+                cluster.on('exit', (worker, code, signal) => {
+                    console.log('Worker ' + worker.process.pid + ' died with code: ' + code + ', and signal: ' + signal);
+                });
+            } else {
+                httpServer.listen(PORT, () => {
+                    console.log(`Server running on ${PORT}`);
+                });
+            }
+            break
+        default:
+            httpServer.listen(PORT, () => {
+                console.log(`Server running on ${PORT}`);
+            });
+            break;
+    }
 }
 
 io.on('connection', async (socket) => {
