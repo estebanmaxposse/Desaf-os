@@ -1,0 +1,12 @@
+include includes/head.pug
+include includes/header.pug
+    
+body
+
+    div(class="alert alert-danger d-flex justify-content-between" role="alert")
+        h2 Login failed!
+
+    script.
+        setTimeout(() => {
+            window.location.href = '/pages/login.html'
+        }, 2000)
