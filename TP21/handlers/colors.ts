@@ -45,10 +45,10 @@ export const addColor = async (ctx: Context) => {
 
 export const getColors = async (ctx: Context) => {
   try {
-    const fileContent = await Deno.readFile(path);
-    const text = new TextDecoder().decode(fileContent);
+    const data = await Deno.readTextFile(path);
+    const items: ColorArray = JSON.parse(data);
 
-    ctx.response.body = text;
+    ctx.response.body = items;
   } catch (err) {
     if (err instanceof Deno.errors.NotFound) {
       await createFile(path, [])
