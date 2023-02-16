@@ -4,6 +4,12 @@ import type { Color, ColorArray } from "../types/color.ts";
 const path = "database.txt";
 const encoder = new TextEncoder();
 
+const createFile = async (path: string, content?: Array<string> | Array<any> | string) => {
+      const file = await Deno.create(path);
+      await Deno.writeFile(path, encoder.encode(JSON.stringify(content)));
+      file.close();
+}
+
 export const addColor = async (ctx: Context) => {
   const body = ctx.request.body();
   if (!body.type || !body.value) {
@@ -28,9 +34,7 @@ export const addColor = async (ctx: Context) => {
     ctx.response.body = await Deno.readTextFile(path);
   } catch (err) {
     if (err instanceof Deno.errors.NotFound) {
-      const file = await Deno.create(path);
-      await Deno.writeFile(path, encoder.encode(JSON.stringify([item])));
-      file.close();
+      await createFile(path, [item])
       ctx.response.body = await Deno.readTextFile(path);
     } else {
       ctx.response.status = 500;
@@ -47,9 +51,7 @@ export const getColors = async (ctx: Context) => {
     ctx.response.body = text;
   } catch (err) {
     if (err instanceof Deno.errors.NotFound) {
-      const file = await Deno.create(path);
-      await Deno.writeFile(path, encoder.encode("[]"));
-      file.close();
+      await createFile(path, [])
       const data = await Deno.readTextFile(path);
       ctx.response.body = data;
     } else {
